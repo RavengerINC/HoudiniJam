@@ -20,7 +20,10 @@ public class Asteroid : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                GameObject miniAsteroid = Instantiate(miniAsteroids, Random.insideUnitSphere + transform.position, Quaternion.identity);
+                Vector3 position = Random.insideUnitSphere + transform.position;
+                GameObject miniAsteroid = Instantiate(miniAsteroids, position, Quaternion.identity);
+                Vector3 velocity = (position - transform.position).normalized * Random.Range(3.0f, 5.0f);
+                miniAsteroid.GetComponent<Rigidbody>().velocity = velocity;
             }
 
             Destroy(gameObject);

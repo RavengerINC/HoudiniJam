@@ -26,8 +26,15 @@ public class Spawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Asteroid asteroid = other.GetComponent<Asteroid>();
-        if(asteroid.SpawnTime + 2.0f < Time.time)
+        if (other.transform.CompareTag("Asteroid"))
+        {
+            Asteroid asteroid = other.GetComponent<Asteroid>();
+            if (asteroid.SpawnTime + 2.0f < Time.time)
+            {
+                Destroy(other.gameObject);
+            }
+        }
+        else
         {
             Destroy(other.gameObject);
         }

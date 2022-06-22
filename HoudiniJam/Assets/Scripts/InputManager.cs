@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -18,6 +16,10 @@ public class InputManager : MonoBehaviour
                 if (hit.transform.CompareTag("SpawnGrid"))
                 {
                     Instantiate(minePrefab, hit.point, Quaternion.identity);
+                }
+                else if (hit.transform.CompareTag("Mine"))
+                {
+                    hit.transform.GetComponent<Mine>().OnClick();
                 }
             }
         }
