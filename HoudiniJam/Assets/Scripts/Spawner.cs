@@ -57,9 +57,12 @@ public class Spawner : MonoBehaviour
         Vector3 position = GetRandomPositionInCollider();
         GameObject asteroid = GetRandomAsteroidPrefab();
 
-        GameObject go = Instantiate(asteroid, position, Quaternion.identity);
+        GameObject go = Instantiate(asteroid, position, Random.rotation);
 
-        go.GetComponent<Rigidbody>().velocity = CalculateInitialTrajectory(position);
+        Rigidbody rb = go.GetComponent<Rigidbody>();
+        rb.velocity = CalculateInitialTrajectory(position);
+        rb.rotation = Random.rotation;
+
         go.GetComponent<Asteroid>().SetSpawnTime(Time.time);
     }
 
