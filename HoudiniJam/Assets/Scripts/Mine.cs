@@ -29,7 +29,7 @@ public class Mine : MonoBehaviour
         m_isArming = true;
 
         m_collider = GetComponent<Collider>();
-        m_renderer = GetComponent<MeshRenderer>();
+        m_renderer = GetComponentInChildren<MeshRenderer>();
 
         runningCoroutine = Arm();
         StartCoroutine(runningCoroutine);
@@ -84,27 +84,29 @@ public class Mine : MonoBehaviour
     private void DamageMine()
     {
         m_isDamaged = true;
-        m_renderer.material.color = Color.red;
+        ChangeEmissionColour(Color.red);
     }
 
     private IEnumerator Arm()
     {
-        m_renderer.material.color = Color.yellow;
+        ChangeEmissionColour(Color.yellow);
 
         yield return new WaitForSeconds(m_armingTime);
 
         m_isArming = false;
-        m_renderer.material.color = Color.white;
+        ChangeEmissionColour(Color.green);
     }
 
     private IEnumerator Repair()
     {
         m_isRepairing = true;
+        ChangeEmissionColour(Color.yellow);
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
 
         m_isRepairing = false;
-        m_renderer.material.color = Color.white;
+        m_isDamaged = false;
+        ChangeEmissionColour(Color.green);
     }
 
     private void Explode()
@@ -119,5 +121,10 @@ public class Mine : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void ChangeEmissionColour(Color color)
+    {
+        m_renderer.material.SetColor("_Emission", color);
     }
 }

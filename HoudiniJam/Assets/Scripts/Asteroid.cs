@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    [SerializeField] GameObject miniAsteroids;
+    [SerializeField] GameObject[] m_miniAsteroids;
 
     private float m_spawnTime;
     public float SpawnTime { get { return m_spawnTime; } }
@@ -14,7 +14,7 @@ public class Asteroid : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 Vector3 position = Random.insideUnitSphere + transform.position;
-                GameObject miniAsteroid = Instantiate(miniAsteroids, position, Random.rotation);
+                GameObject miniAsteroid = Instantiate(GetRandomMiniAsteroidPrefab(), position, Random.rotation);
                 Vector3 velocity = (position - transform.position).normalized * Random.Range(3.0f, 5.0f);
 
                 Rigidbody rb = miniAsteroid.GetComponent<Rigidbody>();
@@ -39,4 +39,10 @@ public class Asteroid : MonoBehaviour
         m_spawnTime = time;
     }
 
+    private GameObject GetRandomMiniAsteroidPrefab()
+    {
+        int randomIndex = Random.Range(0, m_miniAsteroids.Length);
+
+        return m_miniAsteroids[randomIndex];
+    }
 }

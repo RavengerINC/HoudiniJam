@@ -128,8 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11329cf450a2704592d57ea816fd59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniAsteroids: {fileID: 885593056354711689, guid: a704e05a550c3cb4a8269c7eaefd8852,
-    type: 3}
+  m_miniAsteroids:
+  - {fileID: 885593056354711689, guid: a704e05a550c3cb4a8269c7eaefd8852, type: 3}
+  - {fileID: 885593056354711689, guid: e55364906c573b641bb68fd4c37b6633, type: 3}
 --- !u!1001 &2119304106546103605
 PrefabInstance:
   m_ObjectHideFlags: 0
