@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Asteroid : MonoBehaviour
 {
     [SerializeField] GameObject[] m_miniAsteroids;
+    [SerializeField] VisualEffect asteroidCollisionVFX;
 
     private float m_spawnTime;
     public float SpawnTime { get { return m_spawnTime; } }
@@ -21,6 +24,11 @@ public class Asteroid : MonoBehaviour
                 rb.velocity = velocity;
                 rb.rotation = Random.rotation;
             }
+
+            //StartCoroutine(CollisionVFX());
+
+            VisualEffect vfx = Instantiate(asteroidCollisionVFX, transform.position, transform.rotation);
+            vfx.SendEvent("OnPlay");
 
             Destroy(gameObject);
         }
@@ -45,4 +53,16 @@ public class Asteroid : MonoBehaviour
 
         return m_miniAsteroids[randomIndex];
     }
+
+    //private IEnumerator CollisionVFX()
+    //{
+    //    GetComponent<Collider>().enabled = false;
+    //    GetComponentInChildren<MeshRenderer>().enabled = false;
+
+    //    asteroidCollisionVFX.SendEvent("OnPlay");
+
+    //    yield return new WaitForSeconds(3.0f);
+
+    //    Destroy(gameObject);
+    //}
 }
