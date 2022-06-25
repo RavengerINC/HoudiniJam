@@ -94,6 +94,6 @@ public class Spawner : MonoBehaviour
 
     private Vector3 CalculateInitialTrajectory(Vector3 startingPosition)
     {
-        return -startingPosition.normalized * 5.0f;
+        return -startingPosition.normalized * 4.5f;
     }
 }
