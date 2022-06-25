@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7986557742139847592}
   - component: {fileID: 1222632799192233265}
   - component: {fileID: 5150960182853325210}
+  - component: {fileID: 463303217942043994}
   m_Layer: 0
   m_Name: Mine_01
   m_TagString: Mine
@@ -49,6 +50,8 @@ MonoBehaviour:
   m_armingTime: 1.5
   m_repairTime: 2
   m_explosionRadius: 5
+  m_mineExpldeVFX: {fileID: 4945119391977732260, guid: 27bccefc545f021468e763f1ae3bddae,
+    type: 3}
 --- !u!135 &5150960182853325210
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -60,8 +63,21 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &463303217942043994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626519653767350904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808527c991034024b9d77f21176b90e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_degreesPerSecond: 0.1
 --- !u!1001 &6174391378319012639
 PrefabInstance:
   m_ObjectHideFlags: 0

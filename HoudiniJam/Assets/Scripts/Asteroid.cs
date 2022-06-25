@@ -5,7 +5,8 @@ using UnityEngine.VFX;
 public class Asteroid : MonoBehaviour
 {
     [SerializeField] GameObject[] m_miniAsteroids;
-    [SerializeField] VisualEffect asteroidCollisionVFX;
+    [SerializeField] GameObject m_asteroidExplosion;
+    [SerializeField] GameObject m_shipExplosion;
 
     private float m_spawnTime;
     public float SpawnTime { get { return m_spawnTime; } }
@@ -25,12 +26,7 @@ public class Asteroid : MonoBehaviour
                 rb.rotation = Random.rotation;
             }
 
-            //StartCoroutine(CollisionVFX());
-
-            VisualEffect vfx = Instantiate(asteroidCollisionVFX, transform.position, transform.rotation);
-            vfx.SendEvent("OnPlay");
-
-            Destroy(gameObject);
+            ExplodeAsteroid();
         }
         else if (collision.transform.CompareTag("MiniAsteroid"))
         {
@@ -38,7 +34,7 @@ public class Asteroid : MonoBehaviour
         }
         else if (collision.transform.CompareTag("Spaceship"))
         {
-            Destroy(gameObject);
+            return;
         }
     }
 
@@ -54,15 +50,15 @@ public class Asteroid : MonoBehaviour
         return m_miniAsteroids[randomIndex];
     }
 
-    //private IEnumerator CollisionVFX()
-    //{
-    //    GetComponent<Collider>().enabled = false;
-    //    GetComponentInChildren<MeshRenderer>().enabled = false;
+    public void ExplodeOnShip()
+    {
+        Instantiate(m_shipExplosion, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
 
-    //    asteroidCollisionVFX.SendEvent("OnPlay");
-
-    //    yield return new WaitForSeconds(3.0f);
-
-    //    Destroy(gameObject);
-    //}
+    public void ExplodeAsteroid()
+    {
+        Instantiate(m_asteroidExplosion, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
 }

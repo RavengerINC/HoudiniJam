@@ -1,11 +1,16 @@
+using System.Linq;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private GameObject minePrefab;
+    [SerializeField] private GameObject m_minePrefab;
+    [SerializeField] private Controller m_controller;
 
     private void Update()
     {
+        if (m_controller.GameFinished)
+            return;
+
         if (Input.GetMouseButtonUp(0))
         {
             RaycastHit hit;
@@ -15,7 +20,10 @@ public class InputManager : MonoBehaviour
             {
                 if (hit.transform.CompareTag("SpawnGrid"))
                 {
-                    Instantiate(minePrefab, hit.point, Quaternion.identity);
+                    if (!CanSpawnMine(hit.point))
+                        return;
+
+                    Instantiate(m_minePrefab, hit.point, Quaternion.identity);
                 }
                 else if (hit.transform.CompareTag("Mine"))
                 {
@@ -23,5 +31,14 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool CanSpawnMine(Vector3 position)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(position, 4);
+
+        var foundColliders = hitColliders.Where(hitColliders => hitColliders.gameObject.CompareTag("Mine")).Select(hc => hc.gameObject);
+
+        return foundColliders.Count() <= 0;
     }
 }

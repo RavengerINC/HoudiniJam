@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Mine : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Mine : MonoBehaviour
     [SerializeField] private float m_repairTime = 2.0f;
 
     [SerializeField] private float m_explosionRadius = 5.0f;
+    [SerializeField] GameObject m_mineExpldeVFX;
 
     private Collider m_collider;
     private MeshRenderer m_renderer;
@@ -42,6 +44,10 @@ public class Mine : MonoBehaviour
             if (!m_isDamaged)
             {
                 StopCoroutine(runningCoroutine);
+
+                m_isArming = false;
+                m_isRepairing = false;
+
                 DamageMine();
             }
         }
@@ -117,8 +123,10 @@ public class Mine : MonoBehaviour
 
         foreach(var asteroid in asteroids)
         {
-            Destroy(asteroid.gameObject);
+            asteroid.GetComponent<Asteroid>().ExplodeAsteroid();
         }
+
+        GameObject vfx = Instantiate(m_mineExpldeVFX, transform.position, Random.rotation);
 
         Destroy(gameObject);
     }
