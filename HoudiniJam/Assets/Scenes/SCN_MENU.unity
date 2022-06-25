@@ -1556,11 +1556,11 @@ MonoBehaviour:
     to spawn a mine.  Mines take a few seconds to arm.  Once a mine is armed, left
     click it to denotate and destroy surrounding asteroids.  If an asteroid hits
     a mine it will become damage, left click to restart the arming process.  Mines
-    have a minimum distance they be from another mine.
+    have a minimum distance they must be from another mine.
 
 
-    - Your spaceship as
-    hull strength to take 9 hits from asteroids, the 10th will destroy it!'
+    - Your spaceship
+    has hull strength to take 9 hits from an asteroid, the 10th will destroy it!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

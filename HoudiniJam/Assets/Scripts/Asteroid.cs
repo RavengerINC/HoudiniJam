@@ -16,16 +16,16 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.transform.CompareTag("Asteroid"))
         {
-            for (int i = 0; i < 3; i++)
-            {
-                Vector3 position = Random.insideUnitSphere + transform.position;
-                GameObject miniAsteroid = Instantiate(GetRandomMiniAsteroidPrefab(), position, Random.rotation);
-                Vector3 velocity = (position - transform.position).normalized * Random.Range(3.0f, 5.0f);
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    Vector3 position = Random.insideUnitSphere + transform.position;
+            //    GameObject miniAsteroid = Instantiate(GetRandomMiniAsteroidPrefab(), position, Random.rotation);
+            //    Vector3 velocity = (position - transform.position).normalized * Random.Range(3.0f, 5.0f);
 
-                Rigidbody rb = miniAsteroid.GetComponent<Rigidbody>();
-                rb.velocity = velocity;
-                rb.rotation = Random.rotation;
-            }
+            //    Rigidbody rb = miniAsteroid.GetComponent<Rigidbody>();
+            //    rb.velocity = velocity;
+            //    rb.rotation = Random.rotation;
+            //}
 
             AudioController.Instance.Play(m_asteroidCollideAudio);
             ExplodeAsteroid();

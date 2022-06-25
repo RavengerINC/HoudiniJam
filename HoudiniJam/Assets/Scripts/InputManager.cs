@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
 
     private bool CanSpawnMine(Vector3 position)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(position, 4);
+        Collider[] hitColliders = Physics.OverlapSphere(position, 3);
 
         var foundColliders = hitColliders.Where(hitColliders => hitColliders.gameObject.CompareTag("Mine")).Select(hc => hc.gameObject);
 
