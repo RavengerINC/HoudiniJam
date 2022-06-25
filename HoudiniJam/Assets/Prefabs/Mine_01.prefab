@@ -52,6 +52,7 @@ MonoBehaviour:
   m_explosionRadius: 5
   m_mineExpldeVFX: {fileID: 4945119391977732260, guid: 27bccefc545f021468e763f1ae3bddae,
     type: 3}
+  m_mineExplodeAudio: {fileID: 8300000, guid: 2ac875a277a131d4daedc84591dde06d, type: 3}
 --- !u!135 &5150960182853325210
 SphereCollider:
   m_ObjectHideFlags: 0

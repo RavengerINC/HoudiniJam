@@ -5,6 +5,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_minePrefab;
     [SerializeField] private Controller m_controller;
+    [SerializeField] private AudioClip m_spawnMineAudio;
 
     private void Update()
     {
@@ -24,6 +25,8 @@ public class InputManager : MonoBehaviour
                         return;
 
                     Instantiate(m_minePrefab, hit.point, Quaternion.identity);
+
+                    AudioController.Instance.Play(m_spawnMineAudio);
                 }
                 else if (hit.transform.CompareTag("Mine"))
                 {

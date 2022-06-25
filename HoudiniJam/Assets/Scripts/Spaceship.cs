@@ -5,6 +5,7 @@ public class Spaceship : MonoBehaviour
     [SerializeField] private int m_maximumHealth = 10;
     [SerializeField] private GameObject m_DestroyedEffects;
     [SerializeField] private Controller m_controller;
+    [SerializeField] private AudioClip m_shipDestroyedAudio;
 
     private int m_currentHeatlh;
     public int CurrentHealth { get { return m_currentHeatlh; } }
@@ -39,6 +40,7 @@ public class Spaceship : MonoBehaviour
         m_controller.ShipDefeated();
 
         Instantiate(m_DestroyedEffects, transform.position, transform.rotation);
+        AudioController.Instance.Play(m_shipDestroyedAudio);
 
         Destroy(gameObject);
     }

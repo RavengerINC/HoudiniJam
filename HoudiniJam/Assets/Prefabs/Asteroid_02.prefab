@@ -135,6 +135,8 @@ MonoBehaviour:
     type: 3}
   m_shipExplosion: {fileID: 6361497010616169665, guid: 9f145b7248c9baa4484b8a07b3d2a883,
     type: 3}
+  m_asteroidCollideAudio: {fileID: 8300000, guid: e8059ffc366b87e48a6593d6d044ac38,
+    type: 3}
 --- !u!1001 &5769091167657580769
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class Mine : MonoBehaviour
 
     [SerializeField] private float m_explosionRadius = 5.0f;
     [SerializeField] GameObject m_mineExpldeVFX;
+    [SerializeField] private AudioClip m_mineExplodeAudio;
 
     private Collider m_collider;
     private MeshRenderer m_renderer;
@@ -33,8 +34,7 @@ public class Mine : MonoBehaviour
         m_collider = GetComponent<Collider>();
         m_renderer = GetComponentInChildren<MeshRenderer>();
 
-        runningCoroutine = Arm();
-        StartCoroutine(runningCoroutine);
+        StartCoroutine(Arm());
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,7 +43,7 @@ public class Mine : MonoBehaviour
         {
             if (!m_isDamaged)
             {
-                StopCoroutine(runningCoroutine);
+                StopAllCoroutines();
 
                 m_isArming = false;
                 m_isRepairing = false;
@@ -66,10 +66,16 @@ public class Mine : MonoBehaviour
 
         if (m_isDamaged)
         {
+            StopAllCoroutines();
+            m_isRepairing = false;
+            m_isArming = false;
             StartCoroutine(Repair());
         }
         else
         {
+            StopAllCoroutines();
+            m_isRepairing = false;
+            m_isArming = false;
             StartCoroutine(ExplodeMine());
         }
     }
@@ -127,6 +133,8 @@ public class Mine : MonoBehaviour
         }
 
         GameObject vfx = Instantiate(m_mineExpldeVFX, transform.position, Random.rotation);
+
+        AudioController.Instance.Play(m_mineExplodeAudio);
 
         Destroy(gameObject);
     }

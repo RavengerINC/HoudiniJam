@@ -7,6 +7,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] GameObject[] m_miniAsteroids;
     [SerializeField] GameObject m_asteroidExplosion;
     [SerializeField] GameObject m_shipExplosion;
+    [SerializeField] private AudioClip m_asteroidCollideAudio;
 
     private float m_spawnTime;
     public float SpawnTime { get { return m_spawnTime; } }
@@ -26,6 +27,7 @@ public class Asteroid : MonoBehaviour
                 rb.rotation = Random.rotation;
             }
 
+            AudioController.Instance.Play(m_asteroidCollideAudio);
             ExplodeAsteroid();
         }
         else if (collision.transform.CompareTag("MiniAsteroid"))

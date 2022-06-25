@@ -47,7 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maximumHealth: 10
+  m_DestroyedEffects: {fileID: 6361497010616169665, guid: d7d6d16159bc9f944a489c9d739d359c,
+    type: 3}
   m_controller: {fileID: 0}
+  m_shipDestroyedAudio: {fileID: 8300000, guid: 1fa3117daf4dc5d4291a424135d38562,
+    type: 3}
 --- !u!64 &5977767817487241129
 MeshCollider:
   m_ObjectHideFlags: 0
